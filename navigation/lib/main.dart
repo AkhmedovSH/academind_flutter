@@ -13,20 +13,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
         accentColor: Colors.amber,
-        textTheme: ThemeData.light().textTheme.copyWith(
+        textTheme: ThemeData.light().textTheme.copyWith( 
             bodyText1: TextStyle(
-              color: Color.fromARGB(20, 51, 51, 1),
+              color: Colors.black,
             ),
             bodyText2: TextStyle(
-              color: Color.fromARGB(20, 51, 51, 1),
+              color: Colors.black,
             ),
             headline1: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             )),
       ),
-      home: CategoriesScreen(),
       routes: {
+        '/': (context) => CategoriesScreen(),
         '/category-meals': (context) => CategoryMealsScreen(),
       },
     );
