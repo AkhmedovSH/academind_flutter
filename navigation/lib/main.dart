@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import './screens/meal_detail.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
+
+import './transition/slide_route.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,9 +28,30 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             )),
       ),
-      routes: {
-        '/': (context) => CategoriesScreen(),
-        '/category-meals': (context) => CategoryMealsScreen(),
+      // routes: {
+      //   '/': (context) => CategoriesScreen(),
+      //   '/category-meals': (context) => CategoryMealsScreen(),
+      //   '/meal-detail': (context) => MealDetail(),
+      // },
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return SlideLeftRoute(
+              page: CategoriesScreen(),
+            );
+          case '/category-meals':
+            return SlideLeftRoute(
+              page: CategoryMealsScreen(),
+              settings: settings,
+            );
+          case '/meal-detail':
+            return SlideLeftRoute(
+              page: MealDetail(),
+              settings: settings,
+            );
+          default:
+            return null;
+        }
       },
     );
   }
