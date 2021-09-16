@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navigation/category_item.dart';
-import 'package:navigation/dummy_data.dart';
+import '../widgets/category_item.dart';
 
-import './dummy_data.dart';
+import '../dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

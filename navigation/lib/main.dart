@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navigation/categories_screen.dart';
-import 'package:navigation/category_meals_screen.dart';
+import './screens/categories_screen.dart';
+import './screens/category_meals_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
         accentColor: Colors.amber,
-        textTheme: ThemeData.light().textTheme.copyWith( 
+        textTheme: ThemeData.light().textTheme.copyWith(
             bodyText1: TextStyle(
               color: Colors.black,
             ),
