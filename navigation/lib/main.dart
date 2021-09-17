@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './screens/meal_detail.dart';
+import 'package:navigation/screens/tabs_screen.dart';
+import 'screens/meal_detail_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case '/':
             return SlideLeftRoute(
-              page: CategoriesScreen(),
+              page: TabsScreen(),
             );
           case '/category-meals':
             return SlideLeftRoute(
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             );
           case '/meal-detail':
             return SlideLeftRoute(
-              page: MealDetail(),
+              page: MealDetailScreen(),
               settings: settings,
             );
           default:
