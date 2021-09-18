@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
 
-class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key}) : super(key: key);
+class MealDetailScreen extends StatefulWidget {
+  final Function toggleFavorite;
+  final Function isFavorite;
 
+  MealDetailScreen(this.toggleFavorite, this.isFavorite);
+
+  @override
+  _MealDetailScreenState createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -28,6 +36,11 @@ class MealDetailScreen extends StatelessWidget {
       width: 300,
       child: child,
     );
+  }
+
+  void _myUpdate(String mealId) {
+    widget.toggleFavorite(mealId);
+    setState(() {});
   }
 
   @override
@@ -90,10 +103,15 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pop(mealId);
-        },
-        child: Icon(Icons.delete),
+        // onPressed: () {
+        //   Navigator.of(context).pop(mealId);
+        // },
+        // child: Icon(Icons.delete),
+        onPressed: () => _myUpdate(mealId),
+        child: Icon(
+          widget.isFavorite(mealId) ? Icons.star : Icons.star_border,
+        ),
+        //child: Icon(Icons.star),
       ),
     );
   }

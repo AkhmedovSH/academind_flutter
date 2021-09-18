@@ -22,7 +22,9 @@ class _MyAppState extends State<MyApp> {
     'vegan': false,
     'vegatarian': false,
   };
+
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -43,6 +45,25 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex = _favoriteMeals.indexWhere(
+      (element) => element.id == mealId,
+    );
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      _favoriteMeals.add(DUMMY_MEALS.firstWhere(
+        (element) => element.id == mealId,
+      ));
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -75,7 +96,7 @@ class _MyAppState extends State<MyApp> {
         switch (settings.name) {
           case '/':
             return SlideLeftRoute(
-              page: TabsScreen(),
+              page: TabsScreen(_favoriteMeals),
             );
           case '/category-meals':
             return SlideLeftRoute(
@@ -84,12 +105,12 @@ class _MyAppState extends State<MyApp> {
             );
           case '/meal-detail':
             return SlideLeftRoute(
-              page: MealDetailScreen(),
+              page: MealDetailScreen(_toggleFavorite, _isMealFavorite),
               settings: settings,
             );
           case '/filters':
             return SlideLeftRoute(
-              page: FiltersScreen(_setFilters),
+              page: FiltersScreen(_filters, _setFilters),
               settings: settings,
             );
           default:
