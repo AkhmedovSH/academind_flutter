@@ -68,7 +68,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
               ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.primary,
                     child: Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 5,
